@@ -1,16 +1,46 @@
-# ChronoFlow - 个人时区调度器
+# ⚡ ChronoFlow - 个人时区调度器
 
 > 打破朝九晚五，根据你的昼夜节律智能分配任务。
 
 ChronoFlow 是一个纯前端个人效率工具。用户记录每日精力状态，工具在本地拟合出"个人精力曲线"，并将高难度任务自动排布在精力波峰，机械任务排在波谷。
 
+## 🌟 在线演示
+
+项目已部署至 GitHub Pages，打开即可体验（预装7天学生生活演示数据）：
+
+**👉 [https://rain-lei.github.io/vibecodearts/](https://rain-lei.github.io/vibecodearts/)**
+
+### 部署到 GitHub Pages
+
+```bash
+# 安装 gh-pages
+npm install -D gh-pages
+
+# 在 package.json 中添加:
+#   "homepage": "https://rain-lei.github.io/vibecodearts"
+#   "scripts": { "deploy": "gh-pages -d dist", "predeploy": "npm run build" }
+
+# 部署
+npm run deploy
+
+# 在 GitHub 仓库 Settings → Pages 中选择 gh-pages 分支
+```
+
+### 部署到 Vercel / Netlify
+
+1. 将仓库推送到 GitHub
+2. 在 Vercel / Netlify 中导入该仓库
+3. 构建命令: `npm run build`，输出目录: `dist`
+4. 自动部署完成
+
 ## 核心功能
 
-- **精力打卡** — 5 级精力评分，一键记录当前状态
-- **精力曲线** — 基于历史数据拟合 24 小时精力曲线，波峰/波谷可视化
-- **智能调度** — 按认知负荷自动将任务排入最佳时段
-- **波峰提醒** — 浏览器 Notification 在精力高峰时提醒处理高难度任务
-- **离线优先** — 所有数据存储在 LocalStorage，无需后端
+- 🔋 **精力打卡** — 5 级精力评分，一键记录当前状态
+- 📈 **精力曲线** — 基于历史数据拟合 24 小时精力曲线，波峰/波谷可视化
+- 🗓 **智能调度** — 按认知负荷自动将任务排入最佳时段
+- ⚡ **波峰提醒** — 浏览器 Notification 在精力高峰时提醒处理高难度任务
+- 📴 **离线优先** — 所有数据存储在 LocalStorage，无需后端
+- 🎓 **学生友好** — 预装大学生生活场景演示数据，开箱即用
 
 ## 技术栈
 
@@ -28,6 +58,10 @@ ChronoFlow 是一个纯前端个人效率工具。用户记录每日精力状态
 ## 快速开始
 
 ```bash
+# 克隆仓库
+git clone https://github.com/rain-lei/vibecodearts.git
+cd vibecodearts
+
 # 安装依赖
 npm install
 
@@ -52,7 +86,9 @@ npm run test:watch
 ```
 src/
 ├── types/index.ts               # TS 接口定义
-├── utils/algorithms.ts          # 核心算法（曲线拟合 + 任务调度）
+├── utils/
+│   ├── algorithms.ts            # 核心算法（曲线拟合 + 任务调度）
+│   └── seedData.ts              # 演示数据生成（学生生活场景）
 ├── store/useChronoFlowStore.ts   # Zustand Store + LocalStorage 持久化
 ├── components/
 │   ├── EnergyTracker.tsx        # 精力打卡组件
@@ -120,6 +156,7 @@ interface ScheduledItem {
 3. 低认知负荷任务（≤2）排入波谷
 4. 中等任务排入剩余可用时段
 5. 支持跨小时放置，按时段精力降序贪心分配
+6. 排程结果按时间顺序展示
 
 ### 智能通知 (`useSmartNotifications`)
 
@@ -169,11 +206,11 @@ interface ScheduledItem {
 
 ## 使用流程
 
-1. **打卡** — 在一天中不同时间点点击精力等级按钮记录状态
-2. **查看曲线** — 积累几天数据后，精力曲线会逐渐成型
-3. **添加任务** — 输入任务名称、认知负荷和预计时长
-4. **查看排程** — 系统自动将任务排入最佳时段，绿色为波峰、红色为波谷
-5. **接收提醒** — 授权通知后，精力波峰时会收到高难度任务提醒
+1. 🔋 **打卡** — 在一天中不同时间点点击精力等级按钮记录状态
+2. 📈 **查看曲线** — 积累几天数据后，精力曲线会逐渐成型
+3. 📋 **添加任务** — 输入任务名称、认知负荷和预计时长
+4. 🗓 **查看排程** — 系统自动将任务排入最佳时段，按时间排序展示
+5. ⚡ **接收提醒** — 授权通知后，精力波峰时会收到高难度任务提醒
 
 ## 许可
 
