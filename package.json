@@ -3,15 +3,19 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "homepage": "https://rain-lei.github.io/vibecodearts",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "date-fns": "^3.6.0",
+    "esbuild": "^0.28.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "recharts": "^2.12.7",
@@ -24,6 +28,7 @@
     "@types/uuid": "^9.0.8",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.19",
+    "gh-pages": "^6.3.0",
     "jsdom": "^29.1.1",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.4",
